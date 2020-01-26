@@ -1,0 +1,209 @@
+
+/**
+ * UserPermissions Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity UserPermissions {
+	userPermKey String,
+    userPermDescription String,
+	isActive Boolean	
+}
+
+/**
+ * UserGroup Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity UserGroup {
+	groupName String required,
+    isActive Boolean
+}
+
+/**
+ * MenuItems Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity MenuItems {
+	menuName String required,
+    menuURL String required,
+    isFavorite Boolean,
+    isActive Boolean
+}
+
+/**
+ * Worker EmployeeType.
+ * @author Mihindu Karunarathne.
+ */
+entity EmployeeType {
+	employeeTypeCode String required,
+    employeeTypeName String required,
+  	isActive Boolean,
+}
+
+/**
+ * Worker Employee.
+ * @author Mihindu Karunarathne.
+ */
+entity Employee {
+	empNumber String,
+	firstName String required,
+    lastName String,
+    knownName String,
+    email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+    isActive Boolean,
+    phone String ,
+    addressLine1 String,
+    addressLine2 String,
+    city String,
+    country String,
+    imageURL String,
+    image ImageBlob,  
+    salary Double,
+    designation String
+}
+
+
+/**
+ * Extra User Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity ExUser {
+	userKey String required,
+    login String required,
+    firstName String required,
+    lastName String,
+    email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+    isActive Boolean,
+    phone String ,
+    addressLine1 String,
+    addressLine2 String,
+    city String,
+    country String,
+    image ImageBlob,
+    userLimit BigDecimal,
+    creditScore Double
+}
+
+/**
+ * ExUserAuth Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity ExUserAuth {
+	code String required,
+    description String required,
+    isActive Boolean
+}
+
+
+/**
+ * Company LicenseType.
+ * @author Mihindu Karunarathne.
+ */
+entity LicenseType {
+	licenseTypeCode String required,
+    licenseTypeName String required,
+    validityDays Double,
+    isActive Boolean,    
+}
+
+/**
+ * Company Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Company {
+	companyCode String required,
+    companyName String required,
+    companyRegNumber String required,
+    email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+    rating Double,
+    phone String,
+    addressLine1 String,
+    addressLine2 String,
+    city String,
+    country String,
+    image ImageBlob,
+    isActive Boolean,
+    apiKey String,
+    expireOn LocalDate,
+    
+}
+
+/**
+ * Core ConfigurationItems Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity CoreConfigurationItems {
+	configCode String required,
+    configDescription String required,
+    isActive Boolean ,
+}
+
+/**
+ * ConfigurationItems Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity ConfigurationItems {
+    configEnabled Boolean ,
+    configTypeCode String,
+    configParameter String,
+}
+
+/**
+ * Bank Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Bank {
+	bankCode String required,
+    bankName String required,
+    isActive Boolean,
+}
+
+/**
+ * Branch  Entity.
+ * @author Mihindu Karunarathne.
+ */
+entity Branch  {
+	branchCode String required,
+    branchName String required,
+    isActive Boolean,
+}
+
+
+
+relationship ManyToOne {
+  Employee{branch required} to Branch,
+  Employee{empType required} to EmployeeType,
+  ExUser{company required} to Company,
+  Company{licenseType required} to LicenseType,
+  Branch{bank required} to Bank,
+  ConfigurationItems{coreConfig required} to CoreConfigurationItems,
+  
+}
+
+
+relationship OneToOne{
+	ExUser{relatedUser} to User{exUser},    
+}
+
+relationship ManyToMany{
+	ExUser{branch required} to Branch{users required}, 
+    ExUser{userGroups} to UserGroup{users},
+    ExUser{userPermissions} to UserPermissions{users},
+    ExUser{userAuth} to ExUserAuth{user}
+    Company{configitems} to ConfigurationItems{location},    
+    UserPermissions{menuItems required} to MenuItems{userPermission},
+  	UserGroup{userPermissions required} to UserPermissions{userGroup},
+}
+
+// Set pagination options
+//paginate * with infinite-scroll
+paginate * with pagination
+
+//dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl except DocumentType
+service all with serviceClass
+
+filter * 
+// Set an angular suffix
+//angularSuffix * with alpha
