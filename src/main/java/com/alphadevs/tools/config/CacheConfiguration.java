@@ -42,6 +42,33 @@ public class CacheConfiguration {
             createCache(cm, com.alphadevs.tools.domain.User.class.getName());
             createCache(cm, com.alphadevs.tools.domain.Authority.class.getName());
             createCache(cm, com.alphadevs.tools.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.alphadevs.tools.domain.UserPermissions.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.UserPermissions.class.getName() + ".menuItems");
+            createCache(cm, com.alphadevs.tools.domain.UserPermissions.class.getName() + ".users");
+            createCache(cm, com.alphadevs.tools.domain.UserPermissions.class.getName() + ".userGroups");
+            createCache(cm, com.alphadevs.tools.domain.UserGroup.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.UserGroup.class.getName() + ".userPermissions");
+            createCache(cm, com.alphadevs.tools.domain.UserGroup.class.getName() + ".users");
+            createCache(cm, com.alphadevs.tools.domain.MenuItems.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.MenuItems.class.getName() + ".userPermissions");
+            createCache(cm, com.alphadevs.tools.domain.EmployeeType.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.Employee.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.ExUser.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.ExUser.class.getName() + ".branches");
+            createCache(cm, com.alphadevs.tools.domain.ExUser.class.getName() + ".userGroups");
+            createCache(cm, com.alphadevs.tools.domain.ExUser.class.getName() + ".userPermissions");
+            createCache(cm, com.alphadevs.tools.domain.ExUser.class.getName() + ".userAuths");
+            createCache(cm, com.alphadevs.tools.domain.ExUserAuth.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.ExUserAuth.class.getName() + ".users");
+            createCache(cm, com.alphadevs.tools.domain.LicenseType.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.Company.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.Company.class.getName() + ".configitems");
+            createCache(cm, com.alphadevs.tools.domain.CoreConfigurationItems.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.ConfigurationItems.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.ConfigurationItems.class.getName() + ".locations");
+            createCache(cm, com.alphadevs.tools.domain.Bank.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.Branch.class.getName());
+            createCache(cm, com.alphadevs.tools.domain.Branch.class.getName() + ".users");
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-branch-heading">Create or edit a Branch</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_branchCode">Branch Code</label>
+                    <input type="text" class="form-control" name="branchCode" id="field_branchCode"
+                           formControlName="branchCode"/>
+                    <div *ngIf="editForm.get('branchCode')!.invalid && (editForm.get('branchCode')!.dirty || editForm.get('branchCode')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('branchCode')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_branchName">Branch Name</label>
+                    <input type="text" class="form-control" name="branchName" id="field_branchName"
+                           formControlName="branchName"/>
+                    <div *ngIf="editForm.get('branchName')!.invalid && (editForm.get('branchName')!.dirty || editForm.get('branchName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('branchName')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_isActive">Is Active</label>
+                    <input type="checkbox" class="form-control" name="isActive" id="field_isActive"
+                           formControlName="isActive"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_bank">Bank</label>
+                    <select class="form-control" id="field_bank" name="bank" formControlName="bank">
+                        <option *ngIf="!editForm.get('bank')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="bankOption.id === editForm.get('bank')!.value?.id ? editForm.get('bank')!.value : bankOption" *ngFor="let bankOption of banks; trackBy: trackById">{{bankOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('bank')!.invalid && (editForm.get('bank')!.dirty || editForm.get('bank')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('bank')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
