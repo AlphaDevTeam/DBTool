@@ -1,0 +1,35 @@
+{
+    "name": "CoreConfigurationItems",
+    "fields": [
+        {
+            "fieldName": "configCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "configDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200126085126",
+    "javadoc": "Core ConfigurationItems Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "core_configuration_items",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

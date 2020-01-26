@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ExUser.
+    -->
+    <changeSet id="20200126085122-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="related_user_id"
+                                 baseTableName="ex_user"
+                                 constraintName="fk_ex_user_related_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="ex_user"
+                                 constraintName="fk_ex_user_company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="company"/>
+
+        <addForeignKeyConstraint baseColumnNames="ex_user_id"
+                                 baseTableName="ex_user_branch"
+                                 constraintName="fk_ex_user_branch_ex_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ex_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="branch_id"
+                                 baseTableName="ex_user_branch"
+                                 constraintName="fk_ex_user_branch_branch_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="branch"/>
+        
+        <addForeignKeyConstraint baseColumnNames="ex_user_id"
+                                 baseTableName="ex_user_user_groups"
+                                 constraintName="fk_ex_user_user_groups_ex_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ex_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_groups_id"
+                                 baseTableName="ex_user_user_groups"
+                                 constraintName="fk_ex_user_user_groups_user_groups_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_group"/>
+        
+        <addForeignKeyConstraint baseColumnNames="ex_user_id"
+                                 baseTableName="ex_user_user_permissions"
+                                 constraintName="fk_ex_user_user_permissions_ex_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ex_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_permissions_id"
+                                 baseTableName="ex_user_user_permissions"
+                                 constraintName="fk_ex_user_user_permissions_user_permissions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_permissions"/>
+        
+        <addForeignKeyConstraint baseColumnNames="ex_user_id"
+                                 baseTableName="ex_user_user_auth"
+                                 constraintName="fk_ex_user_user_auth_ex_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ex_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_auth_id"
+                                 baseTableName="ex_user_user_auth"
+                                 constraintName="fk_ex_user_user_auth_user_auth_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ex_user_auth"/>
+        
+    </changeSet>
+</databaseChangeLog>

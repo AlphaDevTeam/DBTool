@@ -1,0 +1,46 @@
+{
+    "name": "ConfigurationItems",
+    "fields": [
+        {
+            "fieldName": "configEnabled",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "configTypeCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "configParameter",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "coreConfigurationItems",
+            "otherEntityRelationshipName": "configurationItems",
+            "relationshipValidateRules": "required",
+            "relationshipName": "coreConfig",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "company",
+            "otherEntityRelationshipName": "configitems",
+            "relationshipName": "location",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200126085127",
+    "javadoc": "ConfigurationItems Entity.\\n@author Mihindu Karunarathne.",
+    "entityTableName": "configuration_items",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

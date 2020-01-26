@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-configuration-items-heading">Create or edit a Configuration Items</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_configEnabled">Config Enabled</label>
+                    <input type="checkbox" class="form-control" name="configEnabled" id="field_configEnabled"
+                           formControlName="configEnabled"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_configTypeCode">Config Type Code</label>
+                    <input type="text" class="form-control" name="configTypeCode" id="field_configTypeCode"
+                           formControlName="configTypeCode"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_configParameter">Config Parameter</label>
+                    <input type="text" class="form-control" name="configParameter" id="field_configParameter"
+                           formControlName="configParameter"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_coreConfig">Core Config</label>
+                    <select class="form-control" id="field_coreConfig" name="coreConfig" formControlName="coreConfig">
+                        <option *ngIf="!editForm.get('coreConfig')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="coreConfigurationItemsOption.id === editForm.get('coreConfig')!.value?.id ? editForm.get('coreConfig')!.value : coreConfigurationItemsOption" *ngFor="let coreConfigurationItemsOption of coreconfigurationitems; trackBy: trackById">{{coreConfigurationItemsOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('coreConfig')!.invalid && (editForm.get('coreConfig')!.dirty || editForm.get('coreConfig')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('coreConfig')?.errors?.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
